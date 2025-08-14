@@ -1,4 +1,4 @@
-import subprocess, time, keyboard, platform
+import subprocess, time, keyboard
 
 cd = 0.25
 clicking = False
