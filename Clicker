@@ -1,5 +1,5 @@
 import subprocess, time, keyboard, pyautogui, platform
-if platform.system().lower() == "Linux":
+if platform.system().lower() == "linux":
     linux = True
     print("System is Linux. CLicking will be significantly faster.")
 else:
