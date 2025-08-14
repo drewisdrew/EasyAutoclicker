@@ -1,10 +1,4 @@
-import subprocess, time, keyboard, pyautogui, platform
-if platform.system().lower() == "linux":
-    linux = True
-    print("System is Linux. CLicking will be significantly faster.")
-else:
-    linux = False
-    print("System is not Linux. CLicking is significantly faster on Linux.")
+import subprocess, time, keyboard, platform
 
 cd = 0.25
 clicking = False
@@ -32,14 +26,7 @@ keyboard.add_hotkey('f2', set_speed)
 print("Press F1 to toggle autoclicker.")
 print("Press F2 to change speed.")
 
-# This loop is exclusive to linux systems because of xdotool which is super fast but doesn't work on windows/mac.
-if linux:
-    while True:
-        if clicking:
-            subprocess.Popen(["xdotool", "click", "1"])
-        time.sleep(cd / 1000)
-else:
-    while True:
-        if clicking:
-            pyautogui.click()
+while True:
+    if clicking:
+        subprocess.Popen(["xdotool", "click", "1"])
         time.sleep(cd / 1000)
