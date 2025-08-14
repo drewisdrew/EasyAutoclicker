@@ -1,40 +1,31 @@
 import subprocess, time, keyboard
+
 cd = 0.25
 clicking = False
-change_speed = False
 
 def toggle_clicking():
     global clicking
     clicking = not clicking
     print("Autoclicker On" if clicking else "Autoclicker Off")
 
-def request_speed_change():
-    global change_speed
-    change_speed = True
-    print("Enter new cooldown (ms): ", end="", flush=True)
-
 def set_speed():
-    global cd, change_speed
+    global cd
+    print("Cooldown? (ms)")
     while True:
         try:
             cd = int(input())
-            print("Value set.")
-            change_speed = False
             break
         except ValueError:
             print("Invalid. Must be an integer.")
-            print("Enter new cooldown (ms): ", end="", flush=True)
+
 
 keyboard.add_hotkey('f1', toggle_clicking)
-keyboard.add_hotkey('f2', request_speed_change)
+keyboard.add_hotkey('pause', set_speed)
+
 
 print("Press F1 to toggle autoclicker.")
-print("Press F2 to change speed.")
-
+print("Press PAUSE/BREAK to change speed.")
 while True:
-    if change_speed:
-        set_speed()
-    
     if clicking:
         subprocess.Popen(["xdotool", "click", "1"])
-        time.sleep(cd / 1000)
+    time.sleep(cd / 1000)
