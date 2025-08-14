@@ -1,5 +1,4 @@
 import subprocess, time, keyboard
-
 cd = 0.25
 clicking = False
 
@@ -14,6 +13,7 @@ def set_speed():
     while True:
         try:
             cd = int(input())
+            print("Value set.")
             break
         except ValueError:
             print("Invalid. Must be an integer.")
@@ -25,7 +25,6 @@ keyboard.add_hotkey('f2', set_speed)
 
 print("Press F1 to toggle autoclicker.")
 print("Press F2 to change speed.")
-
 while True:
     if clicking:
         subprocess.Popen(["xdotool", "click", "1"])
